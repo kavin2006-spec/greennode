@@ -45,21 +45,45 @@ The STM32 MCU handles real-time power sensing via CT sensor while the Qualcomm M
 
 ## Project Structure
 
+```
 greennode/
 ├── .env.example
 ├── README.md
 ├── backend/
-│ ├── main.py
-│ ├── database.py
-│ ├── requirements.txt
-│ ├── tracker/
-│ ├── scheduler/
-│ ├── cleaner/
-│ └── intelligence/
+│   ├── main.py
+│   ├── database.py
+│   ├── requirements.txt
+│   ├── tracker/
+│   │   ├── runner.py
+│   │   ├── router.py
+│   │   └── schemas.py
+│   ├── scheduler/
+│   │   ├── entsoe_client.py
+│   │   ├── mock_entsoe.py
+│   │   ├── carbon_calculator.py
+│   │   ├── router.py
+│   │   └── schemas.py
+│   ├── cleaner/
+│   │   ├── compressor.py
+│   │   ├── embedder.py
+│   │   ├── router.py
+│   │   └── schemas.py
+│   └── intelligence/
+│       ├── budget.py
+│       ├── whatif.py
+│       ├── router.py
+│       └── schemas.py
 └── frontend/
-└── src/
-├── api/
-└── components/
+    └── src/
+        ├── api/
+        │   └── greennode.js
+        └── components/
+            ├── shared/
+            ├── tracker/
+            ├── scheduler/
+            ├── cleaner/
+            └── intelligence/
+```
 
 ## Setup
 
