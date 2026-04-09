@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-dotenv
+supabase==1.2.0
+codecarbon
+scikit-learn
+sentence-transformers
+httpx
+pandas
+numpy
