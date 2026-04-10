@@ -5,7 +5,7 @@ import TrackerPanel from './components/tracker/TrackerPanel';
 import SchedulerPanel from './components/scheduler/SchedulerPanel';
 import CleanerPanel from './components/cleaner/CleanerPanel';
 import IntelligencePanel from './components/intelligence/IntelligencePanel';
-
+import JobsPanel from './components/jobs/JobsPanel';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('tracker');
@@ -20,6 +20,7 @@ export default function App() {
         {activeTab === 'scheduler' && <SchedulerPanel timezone={timezone} setTimezone={setTimezone} />}
         {activeTab === 'cleaner' && <CleanerPanel />}
         {activeTab === 'intelligence' && <IntelligencePanel />}
+        {activeTab === 'jobs' && <JobsPanel />}
       </main>
     </div>
   );

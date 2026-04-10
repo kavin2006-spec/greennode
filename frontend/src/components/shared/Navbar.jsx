@@ -1,5 +1,5 @@
 export default function Navbar({ activeTab, setActiveTab }) {
-  const tabs = ['tracker', 'scheduler', 'cleaner', 'intelligence'];
+  const tabs = ['tracker', 'scheduler', 'cleaner', 'intelligence', 'jobs'];
 
   return (
     <nav style={{

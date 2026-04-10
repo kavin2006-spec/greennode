@@ -1,21 +1,26 @@
 import { useState, useEffect } from 'react';
-import { getTrainingRuns } from '../../api/greennode';
+import { getTrainingRuns, getRunsCount } from '../../api/greennode';
 
 export default function StatsBar() {
   const [runs, setRuns] = useState([]);
+  const [totalCount, setTotalCount] = useState(0);
 
   useEffect(() => {
-    getTrainingRuns().then(res => setRuns(res.data)).catch(() => {});
+    Promise.all([getTrainingRuns(5, 0), getRunsCount()])
+      .then(([runsRes, countRes]) => {
+        setRuns(runsRes.data);
+        setTotalCount(countRes.data.count);
+      })
+      .catch(() => {});
   }, []);
 
-  const totalRuns = runs.length;
   const totalCO2 = runs.reduce((sum, r) => sum + r.emissions_kg, 0);
   const totalEnergy = runs.reduce((sum, r) => sum + r.energy_kwh, 0);
 
   const stats = [
-    { label: 'total runs', value: totalRuns, unit: '' },
-    { label: 'total co₂ measured', value: (totalCO2 * 1e6).toFixed(4), unit: 'μgCO₂' },
-    { label: 'total energy', value: (totalEnergy * 1e6).toFixed(4), unit: 'μWh' },
+    { label: 'total runs', value: totalCount, unit: '' },
+    { label: 'recent co₂ (last 5)', value: (totalCO2 * 1e6).toFixed(4), unit: 'μgCO₂' },
+    { label: 'recent energy (last 5)', value: (totalEnergy * 1e6).toFixed(4), unit: 'μWh' },
   ];
 
   return (
